@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@phosphor-icons/react": "^2.0.15",
+    "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
     "next": "14.0.4",

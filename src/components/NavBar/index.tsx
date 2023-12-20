@@ -5,7 +5,6 @@ import {
   Input,
   Link,
   Navbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   NavbarMenu,
@@ -17,6 +16,7 @@ import { useState } from "react";
 
 export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const navItem = [
     {
       name: "Catalog",

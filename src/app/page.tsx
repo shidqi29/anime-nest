@@ -1,22 +1,12 @@
-import AnimeCard from "@/components/AnimeCard";
+import AnimeList from "@/components/AnimeList";
 import { axiosInstance } from "@/lib/api";
 
 export default async function Home() {
-  const { data } = await axiosInstance.get("/top/anime?limit=8");
+  const { data: topAnime } = await axiosInstance.get("/top/anime?limit=8");
 
   return (
-    <div className="min-h-screen">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        {data.data.map((item: any) => (
-          <AnimeCard
-            key={item.mal_id}
-            title={item.title}
-            image={item.images.webp.image_url}
-            year={item.year}
-            genres={item.genres.map((genre: any) => genre.name).join(", ")}
-          />
-        ))}
-      </div>
+    <div className="flex w-full items-center justify-center border">
+      <AnimeList api={topAnime} title="Top Anime" />
     </div>
   );
 }

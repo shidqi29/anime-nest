@@ -5,8 +5,8 @@ export default async function Home() {
   const { data: topAnime } = await axiosInstance.get("/top/anime?limit=8");
 
   return (
-    <div className="flex w-full items-center justify-center border">
-      <AnimeList api={topAnime} title="Top Anime" />
+    <div className="flex w-full items-center justify-center">
+      <AnimeList api={topAnime} title="Top Anime" linkHref="/top/anime" />
     </div>
   );
 }

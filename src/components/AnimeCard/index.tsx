@@ -1,4 +1,5 @@
-import { Card, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardFooter } from "@nextui-org/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export type AnimeCardProps = {
@@ -21,10 +22,11 @@ export const AnimeCard = ({
     <Link href={`/anime/${mal_id}`}>
       <Card className="h-60 w-44 hover:scale-105">
         <Image
-          removeWrapper
           alt="Card background"
-          className="z-0 h-full w-full object-cover"
+          className="h-full w-full object-cover"
           src={image}
+          height={240}
+          width={176}
         />
         <CardFooter className="absolute bottom-0 z-10 justify-between bg-gradient-to-b from-transparent to-black">
           <div className="flex flex-col">

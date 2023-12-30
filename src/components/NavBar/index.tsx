@@ -26,23 +26,21 @@ export const NavBar = () => {
 
   const params = new URLSearchParams(searchParams);
 
+  const [query, setQuery] = useState(params.get("query") ?? "");
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const input = e.target.value;
-    if (input) {
-      params.set("query", input);
+    if (query !== "") {
+      params.set("query", query);
+      router.push(`/search?${params.toString()}`);
     } else {
       params.delete("query");
     }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (params.toString() === "") {
-      return;
-    }
-    if (e.key === "Enter") {
-      router.push(`/search?${params.toString()}`);
-    }
+    setQuery("");
   };
 
   return (
@@ -80,8 +78,8 @@ export const NavBar = () => {
           <SearchInput
             placeholder="Search"
             onChange={handleSearch}
-            onKeyDown={handleKeyDown}
-            defaultValue={searchParams.get("query")?.toString()}
+            value={query}
+            onSubmit={handleSubmit}
           />
           <Button color="primary" className="hidden md:block">
             Login

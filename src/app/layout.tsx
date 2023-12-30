@@ -6,7 +6,7 @@ import { Providers } from "@/app/providers";
 import { NavBar } from "@/components/NavBar";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], preload: true });
 
 export const metadata: Metadata = {
   title: "Create Next App",

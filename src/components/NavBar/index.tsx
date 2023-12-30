@@ -1,9 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import {
   Button,
-  Input,
   Navbar,
   NavbarContent,
   NavbarItem,
@@ -11,30 +9,41 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+
+import { cn } from "@/lib/utils";
+import { SearchInput } from "@/components/SearchInput";
+import { navItem } from "@/lib/constant";
 
 export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const pathname = usePathname();
 
-  const navItem = [
-    {
-      name: "Catalog",
-      href: "/catalog",
-    },
-    {
-      name: "News",
-      href: "/news",
-    },
-    {
-      name: "Collections",
-      href: "/collections",
-    },
-  ];
+  const params = new URLSearchParams(searchParams);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const input = e.target.value;
+    if (input) {
+      params.set("query", input);
+    } else {
+      params.delete("query");
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (params.toString() === "") {
+      return;
+    }
+    if (e.key === "Enter") {
+      router.push(`/search?${params.toString()}`);
+    }
+  };
 
   return (
     <Navbar
@@ -68,18 +77,11 @@ export const NavBar = () => {
         </NavbarContent>
 
         <NavbarContent as="div" className="w-full items-center">
-          <Input
-            classNames={{
-              base: "max-w-full w-full md:mx-2 h-10",
-              mainWrapper: "h-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
+          <SearchInput
             placeholder="Search"
-            size="sm"
-            startContent={<MagnifyingGlass size={18} />}
-            type="search"
+            onChange={handleSearch}
+            onKeyDown={handleKeyDown}
+            defaultValue={searchParams.get("query")?.toString()}
           />
           <Button color="primary" className="hidden md:block">
             Login
@@ -92,6 +94,7 @@ export const NavBar = () => {
         </NavbarContent>
       </NavbarContent>
 
+      {/* Mobile Menu */}
       <NavbarMenu className="bg-[var(--background)] pb-10">
         <div className="flex h-full flex-col gap-y-4">
           {navItem.map((item, idx) => (

@@ -17,10 +17,10 @@ export const SearchInput = ({
   value,
 }: SearchInputProps) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="w-full max-w-full md:mx-2">
       <Input
         classNames={{
-          base: "max-w-full w-full md:mx-2 h-10",
+          base: "h-10",
           mainWrapper: "h-full",
           input: "text-small",
           inputWrapper:

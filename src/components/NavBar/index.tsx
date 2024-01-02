@@ -34,6 +34,7 @@ export const NavBar = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (query.trim() === "") return;
     if (query !== "") {
       params.set("query", query);
       router.push(`/search?${params.toString()}`);

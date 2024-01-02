@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 type HeaderProps = {
   title?: string;
@@ -9,7 +8,7 @@ type HeaderProps = {
 export const Header = ({ title, linkHref }: HeaderProps) => {
   return (
     <div className="flex items-center justify-between p-4">
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h2 className="text-2xl font-bold capitalize">{title}</h2>
       {linkHref && (
         <Link
           href={linkHref}

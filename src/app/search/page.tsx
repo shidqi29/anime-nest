@@ -12,12 +12,11 @@ export default async function Search({
 
   return (
     <>
-      <h1>{searchParams.query}</h1>
       <div className="flex w-full items-center justify-center">
-        <AnimeList api={topAnime} title="Top Anime" linkHref="/top/anime" />
-      </div>
-      <div className="flex w-full items-center justify-center">
-        <AnimeList api={topAnime} title="Top Anime" linkHref="/top/anime" />
+        <AnimeList
+          api={topAnime}
+          title={`Search result for ${searchParams.query}`}
+        />
       </div>
     </>
   );

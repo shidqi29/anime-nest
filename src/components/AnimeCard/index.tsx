@@ -3,18 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 export type AnimeCardProps = {
-  [x: string]: any;
   mal_id: number;
-  title: string;
-  image: string;
+  title?: string;
+  images: any;
   year?: number;
-  genres?: [];
+  genres: string[];
 };
 
 export const AnimeCard = ({
   mal_id,
   title,
-  image,
+  images,
   year,
   genres,
 }: AnimeCardProps) => {
@@ -24,7 +23,7 @@ export const AnimeCard = ({
         <Image
           alt="Card background"
           className="h-full w-full object-cover"
-          src={image}
+          src={images}
           height={240}
           width={176}
         />

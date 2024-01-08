@@ -16,7 +16,7 @@ export default async function Home() {
       />
       <div className="lg:-translate-y-32">
         <AnimeList api={topAnime} title="Top Anime" />
-        <AnimeList api={topAnime} title="Trending" linkHref="/top/anime" />
+        <AnimeList api={topAnime} title="Trending" linkHref="/catalog" />
       </div>
     </>
   );

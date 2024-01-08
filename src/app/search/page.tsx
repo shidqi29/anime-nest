@@ -6,7 +6,7 @@ export default async function Search({
 }: {
   searchParams: { query: string };
 }) {
-  const { data: topAnime } = await axiosInstance.get(
+  const { data } = await axiosInstance.get(
     `/anime?q=${searchParams.query}`,
   );
 
@@ -14,7 +14,7 @@ export default async function Search({
     <>
       <div className="flex w-full items-center justify-center">
         <AnimeList
-          api={topAnime}
+          api={data}
           title={`Search result for ${searchParams.query}`}
         />
       </div>

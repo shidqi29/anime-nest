@@ -3,3 +3,5 @@ export * from "./NavBar";
 export * from "./AnimeList";
 export * from "./SearchInput";
 export * from "./Hero";
+export * from "./LoadingSkeleton";
+export * from "./ErrorMessage";

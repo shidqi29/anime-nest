@@ -1,21 +1,20 @@
 "use client";
 
-import { AnimeCardProps } from "@/components";
+import { AnimeCardProps, ErrorMessage, LoadingSkeleton } from "@/components";
 import AnimeList from "@/components/AnimeList";
 import { axiosInstance } from "@/lib/api";
 import { PaginationType } from "@/types";
 import { Pagination } from "@nextui-org/react";
+import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type AnimeData = {
   data: AnimeCardProps[];
-  pagination: PaginationType
+  pagination: PaginationType;
 };
 
 export default function Catalog() {
-  const [data, setData] = useState<AnimeData | null>(null);
-
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -23,27 +22,27 @@ export default function Catalog() {
   const currentPage = Number(searchParams.get("page")) || 1;
   const [page, setPage] = useState(currentPage);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("/anime", {
-          params: {
-            page: currentPage,
-          },
-        });
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [currentPage]);
+  const { data, isLoading, isError, error } = useQuery<AnimeData>({
+    queryKey: ["anime", { page: currentPage }],
+    queryFn: async () => {
+      const response = await axiosInstance.get("/anime", {
+        params: {
+          page: currentPage,
+        },
+      });
+      return response.data;
+    },
+  });
 
   const handlePageChange = (page: number) => {
     setPage(page);
     router.replace(`${pathname}?page=${page}`);
+    window.scrollTo(0, 0);
   };
+
+  if (isLoading) return <LoadingSkeleton />;
+
+  if (isError) return <ErrorMessage message={error.message} />;
 
   if (!data) return null;
 

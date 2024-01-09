@@ -26,7 +26,7 @@ export const NavBar = () => {
 
   const params = new URLSearchParams(searchParams);
 
-  const [query, setQuery] = useState(params.get("query") ?? "");
+  const [query, setQuery] = useState(params.get("query") || "");
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -36,6 +36,7 @@ export const NavBar = () => {
     e.preventDefault();
     if (query.trim() === "") return;
     if (query !== "") {
+      params.delete("page");
       params.set("query", query);
       router.push(`/search?${params.toString()}`);
     } else {

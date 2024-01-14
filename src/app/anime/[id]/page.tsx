@@ -15,6 +15,10 @@ export default async function DetailAnime({
   params: { id },
 }: DetailAnimeProps) {
   const { data: anime } = await axiosInstance.get(`/anime/${id}/full`);
+  const { data: animeCharacters } = await axiosInstance.get(
+    `/anime/${id}/characters`,
+  );
+
   return (
     <>
       <VideoPlayer
@@ -41,7 +45,7 @@ export default async function DetailAnime({
             </div>
           </div>
         </div>
-        <TabDetail overview={anime.data} />
+        <TabDetail overview={anime.data} characters={animeCharacters} />
       </div>
     </>
   );

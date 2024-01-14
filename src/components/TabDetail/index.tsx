@@ -3,41 +3,39 @@
 import { Tab, Tabs } from "@nextui-org/react";
 
 import { Overview, OverviewProps } from "./overview";
-import { Relations } from "./relations";
+import { Characters, CharactersProps } from "./characters";
 
 type TabDetailProps = {
   overview: OverviewProps;
+  characters: CharactersProps;
 };
 
 export const TabDetail = ({
   overview,
-  //   relations,
-  //   characters,
+  characters,
   //   staff,
   //   review,
 }: TabDetailProps) => {
   const tabs = [
     {
-      id: "overview",
       label: "Overview",
       content: <Overview {...overview} />,
     },
     {
-      id: "relations",
-      label: "Relations",
-      content: <Relations />,
+      label: "Characters",
+      content: <Characters {...characters} />,
     },
   ];
   return (
     <div className="flex w-full flex-col">
       <Tabs
-        aria-label="Dynamic tabs"
+        aria-label="Detail Anime"
         items={tabs}
         variant="underlined"
         size="lg"
       >
         {(item) => (
-          <Tab key={item.id} title={item.label}>
+          <Tab key={item.label} title={item.label}>
             {item.content}
           </Tab>
         )}

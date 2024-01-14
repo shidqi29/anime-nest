@@ -26,6 +26,7 @@ export const AnimeCard = ({
           src={images}
           height={240}
           width={176}
+          loading="lazy"
         />
         <CardFooter className="absolute bottom-0 z-10 justify-between bg-gradient-to-b from-transparent to-black">
           <div className="flex flex-col">

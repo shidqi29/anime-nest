@@ -25,17 +25,19 @@ export const VideoPlayer = ({ thumbnailImg, url, title }: VideoPlayerProps) => {
   return (
     <>
       <div className="relative h-[40dvh] w-full">
-        <Image
-          src={thumbnailImg}
-          alt="Thumbnail Image"
-          width={1280}
-          height={720}
-          priority
-          className="h-full w-full rounded-md object-cover"
-        />
+        {thumbnailImg && (
+          <Image
+            src={thumbnailImg}
+            alt={`Thumbnail of ${title}`}
+            width={1280}
+            height={720}
+            priority
+            className="h-full w-full rounded-lg object-cover"
+          />
+        )}
         <Button
           onPress={onOpen}
-          className="absolute bottom-6 right-6"
+          className="absolute bottom-6 right-6 z-10"
           color="secondary"
           startContent={<PlayCircle size={20} weight="fill" />}
         >

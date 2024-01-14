@@ -5,3 +5,4 @@ export * from "./SearchInput";
 export * from "./Hero";
 export * from "./LoadingSkeleton";
 export * from "./ErrorMessage";
+export * from "./VideoPlayer";

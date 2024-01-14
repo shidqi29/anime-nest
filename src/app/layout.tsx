@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={cn("h-full font-sans antialiased", inter.className)}>
         <Providers>
           <NavBar />
-          <main className="container relative mx-auto flex min-h-screen flex-col px-4 md:px-12">
+          <main className="relative mx-auto flex min-h-screen flex-col px-4 md:px-12">
             {children}
           </main>
         </Providers>

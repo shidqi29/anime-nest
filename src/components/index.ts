@@ -5,3 +5,6 @@ export * from "./SearchInput";
 export * from "./Hero";
 export * from "./LoadingSkeleton";
 export * from "./ErrorMessage";
+export * from "./VideoPlayer";
+export * from "./TabDetail";
+export * from "./CharacterCard";

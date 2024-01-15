@@ -25,7 +25,7 @@ const AnimeList = ({ api, title, linkHref }: AnimeListProps) => {
             title={item.title}
             images={item.images.webp.image_url}
             year={item.year}
-            genres={item.genres.map((genre) => genre.name).join(", ") || "-"}
+            genres={item.genres?.map((genre) => genre.name).join(", ")}
           />
         ))}
       </article>

@@ -18,6 +18,7 @@ export default async function DetailAnime({
   const { data: animeCharacters } = await axiosInstance.get(
     `/anime/${id}/characters`,
   );
+  const { data: animeStaff } = await axiosInstance.get(`/anime/${id}/staff`);
 
   return (
     <>
@@ -45,7 +46,11 @@ export default async function DetailAnime({
             </div>
           </div>
         </div>
-        <TabDetail overview={anime.data} characters={animeCharacters} />
+        <TabDetail
+          overview={anime.data}
+          characters={animeCharacters}
+          staff={animeStaff}
+        />
       </div>
     </>
   );

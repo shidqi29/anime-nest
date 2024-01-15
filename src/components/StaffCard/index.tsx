@@ -1,34 +1,35 @@
 import { Card, CardFooter } from "@nextui-org/react";
 import Image from "next/image";
 
-export type CharacterCardProps = {
-  character: {
+export type StaffCardProps = {
+  person: {
     mal_id: number;
     images: {
-      webp: {
+      jpg: {
         image_url: string;
       };
     };
     name: string;
   };
-  role: string;
+  positions: string[];
 };
 
-export const CharacterCard = (props: CharacterCardProps) => {
-  const { character, role } = props;
+export const StaffCard = (props: StaffCardProps) => {
+  const { person, positions } = props;
+
   return (
     <Card className="h-60 w-44 hover:scale-105">
       <Image
         alt="Character"
         className="h-full w-full object-cover"
-        src={character.images.webp.image_url}
+        src={person.images.jpg.image_url}
         height={240}
         width={176}
       />
       <CardFooter className="absolute bottom-0 z-10 justify-between bg-gradient-to-b from-transparent to-black">
         <div className="flex flex-col">
-          <p className="line-clamp-1 text-sm font-medium">{character.name}</p>
-          <p className="line-clamp-1 text-xs">{role}</p>
+          <p className="line-clamp-1 text-sm font-medium">{person.name}</p>
+          <p className="line-clamp-1 text-xs">{positions.join(", ")}</p>
         </div>
       </CardFooter>
     </Card>

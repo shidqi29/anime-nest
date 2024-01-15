@@ -4,16 +4,18 @@ import { Tab, Tabs } from "@nextui-org/react";
 
 import { Overview, OverviewProps } from "./overview";
 import { Characters, CharactersProps } from "./characters";
+import { Staff, StaffProps } from "./staff";
 
 type TabDetailProps = {
   overview: OverviewProps;
   characters: CharactersProps;
+  staff: StaffProps;
 };
 
 export const TabDetail = ({
   overview,
   characters,
-  //   staff,
+  staff,
   //   review,
 }: TabDetailProps) => {
   const tabs = [
@@ -24,6 +26,10 @@ export const TabDetail = ({
     {
       label: "Characters",
       content: <Characters {...characters} />,
+    },
+    {
+      label: "Staff",
+      content: <Staff {...staff} />,
     },
   ];
   return (

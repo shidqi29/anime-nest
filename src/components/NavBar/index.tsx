@@ -16,6 +16,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { SearchInput } from "@/components/SearchInput";
 import { navItem } from "@/lib/constant";
+import { Login } from "./login";
 
 export const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -83,9 +84,7 @@ export const NavBar = () => {
             value={query}
             onSubmit={handleSubmit}
           />
-          <Button color="primary" className="hidden md:block">
-            Login
-          </Button>
+          <Login /> {/* auth button */}
           <NavbarContent className="md:hidden">
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}

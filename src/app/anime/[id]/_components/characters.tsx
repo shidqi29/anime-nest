@@ -1,4 +1,7 @@
-import { CharacterCard, CharacterCardProps } from "../CharacterCard";
+import {
+  CharacterCard,
+  CharacterCardProps,
+} from "../../../../components/CharacterCard";
 
 export type CharactersProps = {
   data: { character: CharacterCardProps["character"]; role: string }[];

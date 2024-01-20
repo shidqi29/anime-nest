@@ -1,13 +1,14 @@
 "use client";
 
-import { AnimeCardProps, ErrorMessage, LoadingSkeleton } from "@/components";
-import AnimeList from "@/components/AnimeList";
-import { axiosInstance } from "@/lib/api";
-import { PaginationType } from "@/types";
 import { Pagination } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+
+import { AnimeCardProps, ErrorMessage, LoadingSkeleton } from "@/components";
+import AnimeList from "@/components/AnimeList";
+import { axiosInstance } from "@/lib/api";
+import { PaginationType } from "@/types";
 
 type AnimeData = {
   data: AnimeCardProps[];

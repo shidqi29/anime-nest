@@ -1,4 +1,4 @@
-import { StaffCard, StaffCardProps } from "../StaffCard";
+import { StaffCard, StaffCardProps } from "../../../../components/StaffCard";
 
 export type StaffProps = {
   data: StaffCardProps[];

@@ -1,4 +1,4 @@
-import { AnimeCardProps, AnimeListProps } from "@/components";
+import { AnimeCardProps } from "@/components";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 

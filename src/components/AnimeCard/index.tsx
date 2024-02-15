@@ -7,7 +7,7 @@ export type AnimeCardProps = {
   title?: string;
   images: any;
   year?: number;
-  genres: string[];
+  genres?: string[];
 };
 
 export const AnimeCard = ({

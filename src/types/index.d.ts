@@ -137,3 +137,20 @@ export type PaginationType = {
     per_page: number;
   };
 };
+
+export type CommentCardType = {
+  id: number;
+  username: string;
+  user_image: string;
+  comment: string;
+  createdAt: string;
+};
+
+export type CommentInputProps = {
+  mal_id: string;
+  user_email?: string | null;
+  username?: string | null;
+  user_image?: string | null;
+  title: string;
+  createdAt: string;
+};

@@ -138,8 +138,17 @@ export type PaginationType = {
   };
 };
 
+export type CollectionType = {
+  id: number;
+  mal_id: number;
+  user_email: string;
+  image: string;
+  title: string;
+};
+
 export type CommentCardType = {
   id: number;
+  mal_id?: number;
   username: string;
   user_image: string;
   comment: string;

@@ -1,9 +1,11 @@
-import { AnimeCard } from "@/components";
-import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import React from "react";
 
-export default async function page() {
+import { AnimeCard } from "@/components";
+import prisma from "@/lib/prisma";
+import { CollectionType } from "@/types";
+
+export default async function CollectionPage() {
   const { user } = await getServerSession();
   const collection = await prisma.collection.findMany({
     where: {
@@ -14,7 +16,7 @@ export default async function page() {
     <div>
       <h1>Collection Page: {user.email}</h1>
       <div className="flex flex-wrap gap-4">
-        {collection.map((item) => (
+        {collection.map((item: CollectionType) => (
           <AnimeCard
             images={item.image}
             title={item.title}

@@ -5,6 +5,7 @@ import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 import { cn } from "@/lib/utils";
 import Providers from "@/lib/providers";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], preload: true });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <NavBar />
           <main className="relative mx-auto flex min-h-screen flex-col px-4 md:px-12">
             {children}
+            <Toaster richColors />
           </main>
         </Providers>
       </body>

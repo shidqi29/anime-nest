@@ -25,3 +25,17 @@ export const reproduce = (data: AnimeCardProps[], gap: number) => {
 
   return response;
 };
+
+export const formattedDate = (date: string) => {
+  if (!date) return "-";
+
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });
+};

@@ -1,11 +1,14 @@
-import { Card } from "@nextui-org/react";
+import { Button, Card } from "@nextui-org/react";
 import Image from "next/image";
-import { Star } from "@phosphor-icons/react/dist/ssr";
+import { Check, Star } from "@phosphor-icons/react/dist/ssr";
+import { getServerSession } from "next-auth";
 
 import { TabContent, VideoPlayer } from "@/components";
 import { axiosInstance } from "@/lib/api";
-
-import { Characters, Overview, Staff } from "./_components";
+import prisma from "@/lib/prisma";
+import { Characters, CollectionButton, Overview, Staff } from "./_components";
+import { CommentInput } from "./_components/CommentInput";
+import { CommentCard } from "./_components/CommentCard";
 
 type DetailAnimeProps = {
   params: {
@@ -21,6 +24,14 @@ export default async function DetailAnime({
     axiosInstance.get(`/anime/${id}/characters`),
     axiosInstance.get(`/anime/${id}/staff`),
   ]);
+
+  const addedCollection = await prisma.collection.findFirst({
+    where: {
+      mal_id: id,
+    },
+  });
+
+  const session = await getServerSession();
 
   const tabs = [
     {
@@ -61,9 +72,38 @@ export default async function DetailAnime({
               <Star className="text-yellow-400" weight="fill" />
               <span>{animeFull.data.data.score}</span>
             </div>
+            <div>
+              {addedCollection ? (
+                <Button disabled startContent={<Check />} variant="flat">
+                  Already in Collection
+                </Button>
+              ) : (
+                <CollectionButton
+                  mal_id={id}
+                  user_email={session?.user?.email}
+                  title={animeFull.data.data.title}
+                  image={animeFull.data.data.images.webp.image_url}
+                />
+              )}
+            </div>
           </div>
         </div>
         <TabContent tabs={tabs} />
+        {session && (
+          <div className="mt-5">
+            <CommentInput
+              mal_id={id}
+              user_email={session?.user?.email}
+              username={session?.user?.name}
+              title={animeFull.data.data.title}
+              user_image={session?.user?.image}
+              createdAt={new Date().toISOString()}
+            />
+          </div>
+        )}
+        <div className="mt-5">
+          <CommentCard mal_id={id} />
+        </div>
       </div>
     </>
   );

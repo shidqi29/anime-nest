@@ -38,6 +38,16 @@ export const Login = () => {
             </DropdownSection>
             <DropdownSection>
               <DropdownItem
+                key="dashboard"
+                as={Link}
+                href="/user/dashboard"
+                variant="solid"
+              >
+                Dashboard
+              </DropdownItem>
+            </DropdownSection>
+            <DropdownSection>
+              <DropdownItem
                 key="logout"
                 as={Link}
                 href="/api/auth/signout"

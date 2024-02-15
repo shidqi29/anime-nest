@@ -5,7 +5,8 @@ import { Star } from "@phosphor-icons/react/dist/ssr";
 import { TabContent, VideoPlayer } from "@/components";
 import { axiosInstance } from "@/lib/api";
 
-import { Characters, Overview, Staff } from "./_components";
+import { Characters, CollectionButton, Overview, Staff } from "./_components";
+import { getServerSession } from "next-auth";
 
 type DetailAnimeProps = {
   params: {
@@ -21,6 +22,8 @@ export default async function DetailAnime({
     axiosInstance.get(`/anime/${id}/characters`),
     axiosInstance.get(`/anime/${id}/staff`),
   ]);
+
+  const session = await getServerSession();
 
   const tabs = [
     {
@@ -60,6 +63,9 @@ export default async function DetailAnime({
             <div className="flex items-center space-x-2 text-lg">
               <Star className="text-yellow-400" weight="fill" />
               <span>{animeFull.data.data.score}</span>
+            </div>
+            <div>
+              <CollectionButton mal_id={id} user_email={session?.user?.email} />
             </div>
           </div>
         </div>
